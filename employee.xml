@@ -1,0 +1,21 @@
+<employee>
+<emplopyee id="1">
+<name>john doc</name>
+<address>h#38R#3,Banani,Dhaka</address>
+<department>sales</dpartmnt>
+<salary>$20000</sales>
+
+<employee>
+<employee id="2">
+<name> mark zuck</name>
+<address> flat#a/1,h#20,r#18,mirpur,dhaka</address>
+<department>accounts</dpartmnt>
+<salary>$12000</salary>
+
+
+<employee id="3">
+<name>ala voski</name>
+<address>h#38,r#3,motijheel</address>
+<dpartment>human resource</dpartmnt>
+<salary>$30000</salary>
+</employee>
