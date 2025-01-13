@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+
+    <!-- Register Employee -->
+    <h2>Register Employee</h2>
+    <form id="addEmployeeForm">
+        <input type="text" id="name" name="name" placeholder="Name" required>
+        <input type="text" id="contact_no" name="contact_no" placeholder="Contact No" required>
+        <input type="text" id="username" name="username" placeholder="Username" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <button type="submit">Register</button>
+    </form>
+
+    <!-- Employee List -->
+    <h2>Employee List</h2>
+    <input type="text" id="search" placeholder="Search Employees">
+    <ul id="employeeList"></ul>
+
+    <script>
+        
+        $("#addEmployeeForm").on("submit", function(e) {
+            e.preventDefault();
+
+            const formData = {
+                action: "add",
+                name: $("#name").val(),
+                contact_no: $("#contact_no").val(),
+                username: $("#username").val(),
+                password: $("#password").val()
+            };
+
+            $.post("admin.php", formData, function(response) {
+                alert(response);
+                $("#addEmployeeForm")[0].reset();
+            });
+        });
+
+        
+        $("#search").on("input", function() {
+            const query = $(this).val();
+            $.get("admin.php", { query }, function(data) {
+                const employees = JSON.parse(data);
+                $("#employeeList").empty();
+                employees.forEach(employee => {
+                    $("#employeeList").append(`<li>${employee.name} (${employee.username})</li>`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

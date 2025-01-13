@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Registration</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Admin Registration</h1>
+
+    <!-- Registration Form -->
+    <form id="registerForm">
+        <input type="text" id="username" name="username" placeholder="Username" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        // Register
+        $("#registerForm").on("submit", function(e) {
+            e.preventDefault();
+
+            const formData = {
+                action: "register",
+                username: $("#username").val(),
+                password: $("#password").val()
+            };
+
+            $.post("auth.php", formData, function(response) {
+                alert(response);
+                if (response.includes("Admin registered")) {
+                    window.location.href = "login.html";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
